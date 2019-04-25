@@ -13,31 +13,38 @@ namespace MyShopConsole
         {
             char input;
 
+            Console.Write("Enter Employee Number: ");
+            string EmpNo = Console.ReadLine();
+            Console.Write("Enter Employee Name: ");
+            string EmpName = Console.ReadLine();
+            Console.Write("Enter Employee Level: ");
+            string EmpLevel = Console.ReadLine();
+
+            //Console.WriteLine(EmpNo + " " + EmpName + " " + EmpLevel);
+
             bool continueTransactions = true;
             do
             {
-                Console.Write("Enter Employee Number: ");
-                string EmpNo = Console.ReadLine();
-                Console.Write("Enter Employee Name: ");
-                string EmpName = Console.ReadLine();
-                Console.Write("Enter Employee Level: ");
-                string EmpLevel = Console.ReadLine();
-
-                //Console.WriteLine(EmpNo + " " + EmpName + " " + EmpLevel);
-                Console.WriteLine();
                 
+
+                Console.Clear();
+
+                Console.WriteLine("========== MyShop =========");
+                Console.WriteLine("Logged in as: " + EmpName + " |" + EmpNo + "| Level: " + EmpLevel + "\n");
+                Console.Write("Enter Customer Name: ");
+                string CustName = Console.ReadLine();
+                Console.Write("Enter Customer Phone Number: ");
+                string CustPhone = Console.ReadLine();
+                Console.Write("Enter Customer Email: ");
+                string CustEmail = Console.ReadLine();
+
+                //Console.WriteLine(CustName + " " + CustPhone + " " + CustEmail);
+                Console.WriteLine();
+
                 bool continueItems = true;
                 do
                 {
-                    Console.Write("Enter Customer Name: ");
-                    string CustName = Console.ReadLine();
-                    Console.Write("Enter Customer Phone Number: ");
-                    string CustPhone = Console.ReadLine();
-                    Console.Write("Enter Customer Email: ");
-                    string CustEmail = Console.ReadLine();
                     
-                    //Console.WriteLine(CustName + " " + CustPhone + " " + CustEmail);
-                    Console.WriteLine();
 
                     Console.Write("Enter Item Number: ");
                     string itemNum = Console.ReadLine();
@@ -74,6 +81,7 @@ namespace MyShopConsole
                 {
                     continueTransactions = false;
                 }
+                Console.Clear();
             } while (continueTransactions);
         }
     }
