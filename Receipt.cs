@@ -9,9 +9,25 @@ namespace MyShopLibrary
     class Receipt
     {
         public double Total { get; set; }
+        public int PointsEarned { get; set; }
         public LinkedList<object> Items { get; set; }
-        public int Points { get; set; }
         public Dictionary<int, double> ItemDetails { get; set; }
+
+        public Receipt()
+        {
+            this.Total = 0;
+            this.PointsEarned = 0;
+            this.Items = null;
+            this.ItemDetails = null;
+        }
+
+        public Receipt(double total, int points, LinkedList<object> items, Dictionary<int,double> itemDetails)
+        {
+            this.Total = total;
+            this.PointsEarned = points;
+            this.Items = items;
+            this.ItemDetails = itemDetails;
+        }
 
         public LinkedList<object> scanItem(int itemNum)
         {
