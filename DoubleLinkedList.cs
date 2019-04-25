@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MyShopLibrary
 {
-    class DoubleLinkedList
+    public class DoubleLinkedList
     {
-        Node header;
-        Node tail;
+        public Node header;
+        public Node tail;
 
         public DoubleLinkedList()
         {
@@ -33,7 +33,7 @@ namespace MyShopLibrary
             }
         }
 
-        public void RemoveLastAdded(ItemReceiptInstance v)
+        public void RemoveLastAdded()
         {
             Node p = header;
             if (header != null)
@@ -54,7 +54,7 @@ namespace MyShopLibrary
         {
             Node p = tail;
 
-           for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; i++)
             {
                 if (p == null)
                 {
@@ -65,9 +65,10 @@ namespace MyShopLibrary
                     p = p.previous;
                 }
             }
-           if (p != null)
+            if (p != null)
             {
-                if (p.next != null) { 
+                if (p.next != null)
+                {
                     p.next.previous = p.previous;
                 }
 
@@ -79,12 +80,13 @@ namespace MyShopLibrary
 
         }
 
-        public string PrintInReverse(ItemReceiptInstance v)
+        public string PrintInReverse()
         {
             StringBuilder s = new StringBuilder();
             Node p = tail;
 
-            while (p != null) {
+            while (p != null)
+            {
                 s.Append(p.value.ToString());
                 p = p.previous;
             }
@@ -92,7 +94,7 @@ namespace MyShopLibrary
         }
     }
 
-    class Node
+    public class Node
     {
         public ItemReceiptInstance value;
         public Node previous;
