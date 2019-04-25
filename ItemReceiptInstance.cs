@@ -11,5 +11,20 @@ namespace MyShopLibrary
         public string Name { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
+
+        public ItemReceiptInstance()
+        {
+            Name = "";
+            Price = 0.0d;
+            Quantity = 0;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder s = new StringBuilder();
+            s.Append(Name + " " + Quantity + " " + Price + "\n");
+
+            return s.ToString();
+        }
     }
 }
