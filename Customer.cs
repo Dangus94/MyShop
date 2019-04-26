@@ -13,8 +13,8 @@ namespace MyShopLibrary
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-        public int  RewardPoints { get; set; }
-        public bool SeniorCitizen  { get; set; }
+        public int RewardPoints { get; set; }
+        public bool SeniorCitizen { get; set; }
         public int Age { get; set; }
 
 
@@ -31,7 +31,7 @@ namespace MyShopLibrary
             this.Age = 0;
 
         }
-        public Customer(int custnum , string firstName,string address ,string phoneNum, string email, int rewardPoints,
+        public Customer(int custnum, string firstName, string address, string phoneNum, string email, int rewardPoints,
             bool seniorCitizen, int age)
         {
             this.CustNo = custnum;
@@ -45,7 +45,7 @@ namespace MyShopLibrary
 
         }
 
-    
+
 
 
     }

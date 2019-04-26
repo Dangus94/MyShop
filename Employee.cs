@@ -10,7 +10,7 @@ namespace MyShopLibrary
     {
         public string Name { get; set; }
         public int EmployeeNumber { get; set; }
-        public int ManagerLevel  { get; set; }
+        public int ManagerLevel { get; set; }
         public Employee()
         {
             this.Name = " ";
@@ -19,7 +19,7 @@ namespace MyShopLibrary
 
         }
 
-        public Employee ( string name, int empNum, int manLev)
+        public Employee(string name, int empNum, int manLev)
         {
             this.Name = name;
             this.EmployeeNumber = empNum;

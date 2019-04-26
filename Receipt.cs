@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,68 +6,76 @@ using System.Threading.Tasks;
 
 namespace MyShopLibrary
 {
-    class Receipt
+    public class Receipt
     {
         public double Total { get; set; }
         public int PointsEarned { get; set; }
-        public LinkedList<object> Items { get; set; }
-        public Dictionary<int, double> ItemDetails { get; set; }
+        public DoubleLinkedList Items { get; set; }
+        public int TransNo { get; set; }
+        public int CustNo { get; set; }
+        public int EmpNo { get; set; }
 
+        private static int currentTransNo = 0;
+
+        #region Constructors()
         public Receipt()
         {
-            this.Total = 0;
-            this.PointsEarned = 0;
-            this.Items = null;
-            this.ItemDetails = null;
+            Total = 0;
+            PointsEarned = 0;
+            Items = new DoubleLinkedList();
+            TransNo = currentTransNo++;
+            CustNo = 0;
+            EmpNo = 0;
+
         }
 
-        public Receipt(double total, int points, LinkedList<object> items, Dictionary<int,double> itemDetails)
+        public Receipt(int customerNo, int employeeNo)
         {
-            this.Total = total;
-            this.PointsEarned = points;
-            this.Items = items;
-            this.ItemDetails = itemDetails;
+            Total = 0;
+            PointsEarned = 0;
+            Items = new DoubleLinkedList();
+            TransNo = currentTransNo++;
+            CustNo = customerNo;
+            EmpNo = employeeNo;
+        }
+        #endregion
+
+        public void ScanItem(int id,string name, double price, int quantity)
+        {
+            ItemReceiptInstance i = new ItemReceiptInstance(id,name, price,quantity);
+
+            Items.Add(i);
+
+            Total += price * quantity;
+            
         }
 
-        public LinkedList<object> scanItem(int itemNum)
+        public void DeleteByIndex(int item)
         {
-            object item = ItemDetails[itemNum];
-            Items.AddLast(item);
-            return Items;
-        }
+            ItemReceiptInstance v = Items.RemoveNthItem(item);
 
-        public double totalTransaction(LinkedList<object> scannedItems)
-        {
-            double subtotal = 0;
-            double tax = 1.07;
-            double total = 0;
-
-            foreach(double price in scannedItems)
+            if (v != null)
             {
-                subtotal += price;
+                Total -= v.Price * v.Quantity;
             }
-
-            total = subtotal * tax;
-
-            return total;
         }
 
-        public int printReceipt(LinkedList<object> finalTransaction, double total, int rewards)
+        public void DeleteLastScannedItem()
         {
-            foreach(object o in finalTransaction)
+            ItemReceiptInstance v = Items.RemoveLastAdded();
+
+            if (v != null)
             {
-                Console.WriteLine(o);
+                Total -= v.Price * v.Quantity;
             }
-
-            Console.WriteLine("");
-            Console.WriteLine("-------------------------------------------------");
-            Console.WriteLine("");
-            Console.WriteLine("Total: " + total);
-            Console.WriteLine("Rewards: " + rewards);
-            Console.WriteLine("");
-            Console.WriteLine("Thank you for your purchase!");
-
-            return 0;
         }
+
+        public void DeleteAll()
+        {
+            Items.header = null;
+            Items.tail = null;
+            Total = 0;
+        }
+
     }
 }

@@ -33,7 +33,7 @@ namespace MyShopLibrary
             }
         }
 
-        public void RemoveLastAdded()
+        public ItemReceiptInstance RemoveLastAdded()
         {
             Node p = header;
             if (header != null)
@@ -47,14 +47,16 @@ namespace MyShopLibrary
                     p.next.previous = null;
                     header = p.next;
                 }
+                return p.value;
             }
+            return null;
         }
 
-        public void RemoveNthItem(int n)
+        public ItemReceiptInstance RemoveNthItem(int n)
         {
             Node p = tail;
 
-            for (int i = 0; i < n; i++)
+           for (int i = 0; i < n; i++)
             {
                 if (p == null)
                 {
@@ -65,10 +67,20 @@ namespace MyShopLibrary
                     p = p.previous;
                 }
             }
-            if (p != null)
+           if (p != null)
             {
-                if (p.next != null)
+                ItemReceiptInstance temp = p.value;
+
+                if (p.Equals(tail))
                 {
+                    tail = p.previous;
+                }
+
+                if (p.Equals(header))
+                {
+                    header = p.next;
+                }
+                if (p.next != null) { 
                     p.next.previous = p.previous;
                 }
 
@@ -76,8 +88,9 @@ namespace MyShopLibrary
                 {
                     p.previous.next = p.next;
                 }
+                return temp;
             }
-
+            return null;
         }
 
         public string PrintInReverse()
@@ -85,14 +98,18 @@ namespace MyShopLibrary
             StringBuilder s = new StringBuilder();
             Node p = tail;
 
-            while (p != null)
-            {
+            while (p != null) {
                 s.Append(p.value.ToString());
                 p = p.previous;
             }
             return s.ToString();
         }
+
     }
+
+
+
+
 
     public class Node
     {
